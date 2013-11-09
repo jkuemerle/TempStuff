@@ -27,6 +27,9 @@ namespace Celo
         [IntroduceMember(IsVirtual=false,OverrideAction=MemberOverrideAction.OverrideOrFail, Visibility=PostSharp.Reflection.Visibility.Public)]
         public IKeyServer KeyServer {get;set;}
 
+        [IntroduceMember(IsVirtual = false, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
+        public Func<string> Integrity { get; set; }
+
         public override void RuntimeInitialize(Type type)
         {
             EncryptedValues = new Dictionary<string, string>();

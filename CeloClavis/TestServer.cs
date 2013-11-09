@@ -30,5 +30,15 @@ namespace CeloClavis
                     break;
             }
         }
+
+        public IDictionary<string,string> Map
+        {
+            get
+            {
+                var retVal = new Dictionary<string,string>();
+                retVal.Add("SSN","Key1");
+                return retVal;
+            }
+        }
     }
 }

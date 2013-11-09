@@ -11,5 +11,7 @@ namespace Celo
         string GetKey(string KeyName);
 
         IList<string> Keys {get;}
+
+        IDictionary<string, string> Map { get; }
     }
 }

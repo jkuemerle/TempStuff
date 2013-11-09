@@ -36,6 +36,8 @@ namespace Celo
         [ImportMember("KeyServer", IsRequired = true)]
         public Property<IKeyServer> KeyServer;
 
+        [ImportMember("Integrity", IsRequired = false)]
+        public Property<Func<string>> IntegrityFunction;
         public object CreateInstance(AdviceArgs adviceArgs) { return this.MemberwiseClone(); }
 
         public void RuntimeInitializeInstance() { }
@@ -65,6 +67,8 @@ namespace Celo
 
         private string Encrypt(string Data, string KeyValue)
         {
+            if (null != this.IntegrityFunction.Get())
+                Data = AddHMAC(Data, this.IntegrityFunction.Get()); 
             var val = System.Text.UnicodeEncoding.Unicode.GetBytes(Data);
             var iv = new byte[new System.Security.Cryptography.AesManaged().BlockSize / 8].FillWithEntropy();
             byte[] key = new Rfc2898DeriveBytes(KeyValue, iv).GetBytes(new System.Security.Cryptography.AesManaged().KeySize / 8);
@@ -83,6 +87,32 @@ namespace Celo
                 }
             }
             return string.Format("{0}|{1}",Convert.ToBase64String(iv), Convert.ToBase64String(encrypted));
+        }
+
+        private string AddHMAC(string Data, Func<string> Integrity)
+        {
+            var retVal = Data;
+            retVal = string.Format("{0}\0{1}", Data, ComputeHMAC(Data,Integrity));
+            return retVal;
+        }
+        private bool VerifyHMAC(string Data, Func<string> Integrity)
+        {
+            try
+            {
+            var values = Data.Split('\0');
+            if (values.Length < 2)
+                return false;
+            return values[1] == ComputeHMAC(values[0], Integrity);
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+        private static string ComputeHMAC(string Data, Func<string> Integrity)
+        {
+            var hmac = new HMACSHA512() { Key = Encoding.Unicode.GetBytes(Integrity.Invoke()) };
+            return Convert.ToBase64String(hmac.ComputeHash(Encoding.Unicode.GetBytes(Data)));
         }
 
         private string Decrypt(string Data, string KeyValue)
@@ -109,6 +139,16 @@ namespace Celo
                     }
                 }
                 retVal = Encoding.Unicode.GetString(decrypted, 0, decryptedByteCount);
+            }
+            if(null != this.IntegrityFunction.Get())
+            {
+                var values = retVal.Split('\0');
+                if(values.Length < 2)
+                    retVal = null;
+                if(null != retVal && VerifyHMAC(retVal, this.IntegrityFunction.Get()))
+                    retVal = values[0];
+                else
+                    retVal = null;
             }
             return retVal;
         }

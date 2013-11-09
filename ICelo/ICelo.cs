@@ -12,5 +12,7 @@ namespace Celo
 
         IKeyServer KeyServer { get; set; }
 
+        Func<string> Integrity {get; set;}
+
     }
 }
