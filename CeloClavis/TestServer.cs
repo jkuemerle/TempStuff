@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CeloClavis
 {
-    public class TestServer : Celo.IKeyServer
+    public class TestServer : EncryptedType.IKeyServer
     {
         public IList<string> Keys 
         {  get 

@@ -43,9 +43,9 @@
     <Compile Include="TestServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ICelo\ICelo.csproj">
+    <ProjectReference Include="..\ICelo\IEncryptedType.csproj">
       <Project>{6882cd14-904e-447d-a054-d771278509eb}</Project>
-      <Name>ICelo</Name>
+      <Name>IEncryptedType</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

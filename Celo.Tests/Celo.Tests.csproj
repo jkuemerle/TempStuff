@@ -58,13 +58,13 @@
       <Project>{ac1c1c53-db62-44d3-be70-0cc52613b6ea}</Project>
       <Name>CeloClavis</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Celo\Celo.csproj">
+    <ProjectReference Include="..\Celo\EncryptedType.csproj">
       <Project>{c5c2ab4f-243f-4dc3-a04b-5f09ae430de5}</Project>
-      <Name>Celo</Name>
+      <Name>EncryptedType</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ICelo\ICelo.csproj">
+    <ProjectReference Include="..\ICelo\IEncryptedType.csproj">
       <Project>{6882cd14-904e-447d-a054-d771278509eb}</Project>
-      <Name>ICelo</Name>
+      <Name>IEncryptedType</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

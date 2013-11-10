@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 
-using Celo;
+using EncryptedType;
 
 using NUnit.Framework;
 
-namespace Celo.Tests
+namespace EncryptedType.Tests
 {
     [TestFixture]
     public class TestCelo
@@ -38,9 +38,9 @@ namespace Celo.Tests
         {
             var n = new EncTest();
             var s = new CeloClavis.TestServer();
-            ((ICelo)n).KeyServer = s;
-            ((ICelo)n).EncryptionKeys = s.Map;
-            ((ICelo)n).Integrity = n.IntegrityValue;
+            ((IEncryptedType)n).KeyServer = s;
+            ((IEncryptedType)n).EncryptionKeys = s.Map;
+            ((IEncryptedType)n).Integrity = n.IntegrityValue;
             n.SSN = "111-11-1111";
             Assert.AreNotEqual("111-11-1111", n.SSN);
         }
@@ -50,11 +50,11 @@ namespace Celo.Tests
         {
             var n = new EncTest();
             var s = new CeloClavis.TestServer();
-            ((ICelo)n).KeyServer = s;
-            ((ICelo)n).EncryptionKeys = s.Map;
-            ((ICelo)n).Integrity = n.IntegrityValue;
+            ((IEncryptedType)n).KeyServer = s;
+            ((IEncryptedType)n).EncryptionKeys = s.Map;
+            ((IEncryptedType)n).Integrity = n.IntegrityValue;
             n.SSN = "111-11-1111";
-            Assert.AreEqual("111-11-1111", ((ICelo)n).AsClear(() => n.SSN));
+            Assert.AreEqual("111-11-1111", ((IEncryptedType)n).AsClear(() => n.SSN));
         }
 
     }

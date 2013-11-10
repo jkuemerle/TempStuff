@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Linq.Expressions;
 
-namespace Celo
+namespace EncryptedType
 {
-    public interface ICelo
+    public interface IEncryptedType
     {
         IDictionary<string, string> EncryptionKeys { get; set; }
 
@@ -25,7 +25,7 @@ namespace System
 {
     public static class Extensions
     {
-        public static object AsClear<T>(this T Item, Expression<Func<object>> Property) where T : Celo.ICelo
+        public static object AsClear<T>(this T Item, Expression<Func<object>> Property) where T : EncryptedType.IEncryptedType
         {
             MemberExpression memberExpression = null;
             if (Property.Body.NodeType == ExpressionType.Convert)
@@ -42,7 +42,7 @@ namespace System
                 throw new ArgumentException("Not a member access", "expression");
             }
             var propName = (memberExpression.Member as PropertyInfo).Name;
-            return ((Celo.ICelo)Item).ClearText(propName);
+            return ((EncryptedType.IEncryptedType)Item).ClearText(propName);
         }
     }
 }

@@ -12,7 +12,7 @@ using PostSharp.Aspects;
 using PostSharp.Aspects.Dependencies;
 using PostSharp.Aspects.Advices;
 
-namespace Celo
+namespace EncryptedType
 {
     [PSerializable]
     [AspectTypeDependency(AspectDependencyAction.Order, AspectDependencyPosition.After, typeof(EncryptedTypeAttribute))]

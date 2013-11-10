@@ -12,13 +12,13 @@ using PostSharp.Aspects;
 using PostSharp.Aspects.Advices;
 using PostSharp.Aspects.Dependencies;
 
-namespace Celo
+namespace EncryptedType
 {
     [PSerializable]
     [AttributeUsage(AttributeTargets.Class)]
     [AspectTypeDependency(AspectDependencyAction.Order, AspectDependencyPosition.Before, typeof(EncryptedValueAttribute))]
-    [IntroduceInterface(typeof(ICelo), OverrideAction = InterfaceOverrideAction.Ignore)]
-    public class EncryptedTypeAttribute : InstanceLevelAspect, ICelo
+    [IntroduceInterface(typeof(IEncryptedType), OverrideAction = InterfaceOverrideAction.Ignore)]
+    public class EncryptedTypeAttribute : InstanceLevelAspect, IEncryptedType
     {
         [IntroduceMember(IsVirtual = false, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
         public IDictionary<string, string> EncryptedValues { set; get; }
