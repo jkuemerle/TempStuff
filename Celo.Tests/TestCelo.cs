@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 using Celo;
 
@@ -39,12 +40,22 @@ namespace Celo.Tests
             var s = new CeloClavis.TestServer();
             ((ICelo)n).KeyServer = s;
             ((ICelo)n).EncryptionKeys = s.Map;
-            //((ICelo)n).Integrity = n.IntegrityValue;
-            //((ICelo)n).EncryptionKeys.Add("SSN", "Key1");
+            ((ICelo)n).Integrity = n.IntegrityValue;
             n.SSN = "111-11-1111";
-            Assert.AreEqual("111-11-1111", n.SSN);
+            Assert.AreNotEqual("111-11-1111", n.SSN);
         }
 
+        [Test]
+        public void TestDecryption()
+        {
+            var n = new EncTest();
+            var s = new CeloClavis.TestServer();
+            ((ICelo)n).KeyServer = s;
+            ((ICelo)n).EncryptionKeys = s.Map;
+            ((ICelo)n).Integrity = n.IntegrityValue;
+            n.SSN = "111-11-1111";
+            Assert.AreEqual("111-11-1111", ((ICelo)n).AsClear(() => n.SSN));
+        }
 
     }
 }
