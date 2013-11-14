@@ -29,7 +29,7 @@ namespace EncryptedType
         [IntroduceMember(IsVirtual=false,OverrideAction=MemberOverrideAction.OverrideOrFail, Visibility=PostSharp.Reflection.Visibility.Public)]
         public IKeyServer KeyServer { get; set; }
 
-        [IntroduceMember(IsVirtual = false, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
+        [IntroduceMember(IsVirtual = true, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
         public Func<string> Integrity { get; set; }
 
 
@@ -57,6 +57,7 @@ namespace EncryptedType
             if (EncryptionKeys.ContainsKey(PropertyName) && EncryptedValues.ContainsKey(PropertyName))
             {
                 string keyName = EncryptionKeys[PropertyName];
+
                 return Decrypt(EncryptedValues[PropertyName], KeyServer.GetKey(keyName));
             }
             return null;

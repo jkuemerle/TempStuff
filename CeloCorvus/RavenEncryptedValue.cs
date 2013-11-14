@@ -4,11 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using PostSharp;
+using PostSharp.Serialization;
+using PostSharp.Aspects;
+using PostSharp.Aspects.Dependencies;
+using PostSharp.Aspects.Advices;
+
 using EncryptedType;
 
 namespace CeloCorvus
 {
-    class RavenEncryptedValue : EncryptedValueAttribute
+    [PSerializable]
+    [AspectTypeDependency(AspectDependencyAction.Order, AspectDependencyPosition.After, typeof(RavenEncryptedTypeAttribute))]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
+    [CopyCustomAttributes]
+    public class RavenEncryptedValueAttribute : EncryptedValueAttribute
     {
+
     }
 }

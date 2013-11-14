@@ -61,6 +61,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CeloClavis\CeloClavis.csproj">
+      <Project>{ac1c1c53-db62-44d3-be70-0cc52613b6ea}</Project>
+      <Name>CeloClavis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CeloCorvus\CeloCorvus.csproj">
       <Project>{eddddf75-c10b-4396-aa5d-c81083245b5a}</Project>
       <Name>CeloCorvus</Name>

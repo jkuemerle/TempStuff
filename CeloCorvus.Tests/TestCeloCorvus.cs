@@ -11,6 +11,8 @@ using Raven.Client.Document;
 
 using CeloCorvus;
 
+using EncryptedType;
+
 namespace CeloCorvus.Tests
 {
     [TestFixture]
@@ -19,9 +21,11 @@ namespace CeloCorvus.Tests
         private string serverURL = "http://klaptop:1999";
         Raven.Client.IDocumentStore docStore;
 
+        [RavenEncryptedType]
         public class EncTest
         {
             public string ID { get; set; }
+            [RavenEncryptedValue]
             public string SSN { get; set; }
 
             public string IntegrityValue()
@@ -36,27 +40,31 @@ namespace CeloCorvus.Tests
 
         }
 
-        //[Test]
-        //public void TestRavenKeyServer()
-        //{
-        //    var ks = new CeloClavis.RavenDBServer(serverURL, "Keys");
-        //    var n = new EncTest();
-        //    ((IEncryptedType)n).KeyServer = ks;
-        //    ((IEncryptedType)n).EncryptionKeys.Add("SSN", "Key1");
-        //    //((IEncryptedType)n).Integrity = n.IntegrityValue;
-        //    n.SSN = "111-11-1111";
-        //    var asJson = JsonConvert.SerializeObject(n);
-        //    using (var ds = new Raven.Client.Document.DocumentStore() { Url = serverURL, DefaultDatabase = "Test" })
-        //    {
-        //        ds.Initialize();
-        //        var session = ds.OpenSession();
-        //        session.Store(n, n.ID);
-        //        session.SaveChanges();
-        //        var test = session.Load<EncTest>(n.ID);
-        //        Assert.AreEqual(n.SSN, test.SSN);
-        //        Assert.AreEqual(((IEncryptedType)n).AsClear(() => n.SSN), ((IEncryptedType)test).AsClear(() => test.SSN));
-        //    }
-        //}
+        [Test]
+        public void TestRavenWithKeyServer()
+        {
+            var ks = new CeloClavis.RavenDBServer(serverURL, "Keys");
+            var n = new EncTest();
+            ((IEncryptedType)n).KeyServer = ks;
+            ((IEncryptedType)n).EncryptionKeys.Add("SSN", "Key1");
+            ((IEncryptedType)n).Integrity = n.IntegrityValue;
+            n.SSN = "111-11-1111";
+            using (var ds = new Raven.Client.Document.DocumentStore() { Url = serverURL, DefaultDatabase = "Test" })
+            {
+                ds.Initialize();
+                var session = ds.OpenSession();
+                session.Store(n, n.ID);
+                session.SaveChanges();
+                var test = session.Load<EncTest>(n.ID);
+                ((IEncryptedType)test).KeyServer = ks;
+                ((IEncryptedType)test).Integrity = n.IntegrityValue;
+                Assert.AreEqual(n.ID, test.ID);
+                Assert.AreEqual(n.SSN, test.SSN);
+                string nSSN = ((IEncryptedType)n).AsClear(() => n.SSN).ToString();
+                string tSSN = ((IEncryptedType)test).AsClear(() => test.SSN).ToString();
+                Assert.AreEqual(nSSN, tSSN );
+            }
+        }
 
 
     }
