@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptedType", "Celo\Encry
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Celo.Tests", "Celo.Tests\Celo.Tests.csproj", "{880C0B7E-6352-4363-BBFF-4F01C63BA5BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RavenAspect", "RavenAspect\RavenAspect.csproj", "{0FBFC77B-59A5-48EC-89AF-0BD5C68BB9F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeloCorvus.Tests", "CeloCorvus.Tests\CeloCorvus.Tests.csproj", "{8D5D5D19-3074-4B44-80CA-7E908C6A7F44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{880C0B7E-6352-4363-BBFF-4F01C63BA5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{880C0B7E-6352-4363-BBFF-4F01C63BA5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{880C0B7E-6352-4363-BBFF-4F01C63BA5BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FBFC77B-59A5-48EC-89AF-0BD5C68BB9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FBFC77B-59A5-48EC-89AF-0BD5C68BB9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FBFC77B-59A5-48EC-89AF-0BD5C68BB9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FBFC77B-59A5-48EC-89AF-0BD5C68BB9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D5D5D19-3074-4B44-80CA-7E908C6A7F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5D5D19-3074-4B44-80CA-7E908C6A7F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5D5D19-3074-4B44-80CA-7E908C6A7F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5D5D19-3074-4B44-80CA-7E908C6A7F44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
