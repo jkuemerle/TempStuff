@@ -59,11 +59,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Celo\EncryptedType.csproj">
+    <ProjectReference Include="..\EncryptedType\EncryptedType.csproj">
       <Project>{c5c2ab4f-243f-4dc3-a04b-5f09ae430de5}</Project>
       <Name>EncryptedType</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ICelo\IEncryptedType.csproj">
+    <ProjectReference Include="..\IEncryptedType\IEncryptedType.csproj">
       <Project>{6882cd14-904e-447d-a054-d771278509eb}</Project>
       <Name>IEncryptedType</Name>
     </ProjectReference>

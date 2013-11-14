@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ICelo\IEncryptedType.csproj">
+    <ProjectReference Include="..\IEncryptedType\IEncryptedType.csproj">
       <Project>{6882cd14-904e-447d-a054-d771278509eb}</Project>
       <Name>IEncryptedType</Name>
     </ProjectReference>

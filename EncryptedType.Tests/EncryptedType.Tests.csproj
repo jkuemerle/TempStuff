@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{245F0447-7E3F-4797-BEFF-85F2C2615A7B}</ProjectGuid>
+    <ProjectGuid>{880C0B7E-6352-4363-BBFF-4F01C63BA5BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CeloCorvus.Implementation</RootNamespace>
-    <AssemblyName>CeloCorvus.Implementation</AssemblyName>
+    <RootNamespace>Celo.Tests</RootNamespace>
+    <AssemblyName>Celo.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DontImportPostSharp>True</DontImportPostSharp>
@@ -31,10 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="PostSharp">
       <HintPath>..\packages\PostSharp.3.0.40\lib\net20\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,21 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequiresPostSharp.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Celo\EncryptedType.csproj">
-      <Project>{c5c2ab4f-243f-4dc3-a04b-5f09ae430de5}</Project>
-      <Name>EncryptedType</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ICelo\IEncryptedType.csproj">
-      <Project>{6882cd14-904e-447d-a054-d771278509eb}</Project>
-      <Name>IEncryptedType</Name>
-    </ProjectReference>
+    <Compile Include="TestCelo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CeloClavis\CeloClavis.csproj">
+      <Project>{ac1c1c53-db62-44d3-be70-0cc52613b6ea}</Project>
+      <Name>CeloClavis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EncryptedType\EncryptedType.csproj">
+      <Project>{c5c2ab4f-243f-4dc3-a04b-5f09ae430de5}</Project>
+      <Name>EncryptedType</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IEncryptedType\IEncryptedType.csproj">
+      <Project>{6882cd14-904e-447d-a054-d771278509eb}</Project>
+      <Name>IEncryptedType</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\PostSharp.3.0.40\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.3.0.40\tools\PostSharp.targets')" />
