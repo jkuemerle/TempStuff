@@ -14,4 +14,11 @@ namespace EncryptedType
 
         IDictionary<string, string> Map { get; }
     }
+
+    public struct Key
+    {
+        public string Name { get; set; }
+
+        public string KeyValue { get; set; }
+    }
 }

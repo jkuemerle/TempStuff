@@ -27,11 +27,11 @@ namespace EncryptedType
             propname = targetLocation.Name;
         }
 
-        [ImportMember("EncryptedValues", IsRequired = true)]
-        public Property<IDictionary<string, string>> EncryptedValuesStore;
+        //[ImportMember("EncryptedValues", IsRequired = true)]
+        //public Property<IDictionary<string, string>> EncryptedValuesStore;
 
-        [ImportMember("EncryptionKeys", IsRequired = true)]
-        public Property<IDictionary<string, string>> EncryptionKeysStore;
+        //[ImportMember("EncryptionKeys", IsRequired = true)]
+        //public Property<IDictionary<string, string>> EncryptionKeysStore;
 
         [ImportMember("KeyServer", IsRequired = true)]
         public Property<IKeyServer> KeyServer;
@@ -45,28 +45,35 @@ namespace EncryptedType
         [ImportMember("Decrypt", IsRequired = true, Order = ImportMemberOrder.AfterIntroductions)]
         public Func<string,string, string> Decrypt;
 
+        [ImportMember("GetEncryptedValues", IsRequired = true, Order = ImportMemberOrder.AfterIntroductions)]
+        public Func<IDictionary<string, string>> GetEncryptedValues;
+
+        [ImportMember("GetEncryptionKeys", IsRequired = true, Order = ImportMemberOrder.AfterIntroductions)]
+        public Func<IDictionary<string, string>> GetEncryptionKeys;
+
+
         public object CreateInstance(AdviceArgs adviceArgs) { return this.MemberwiseClone(); }
 
         public void RuntimeInitializeInstance() { }
 
         public override void OnSetValue(LocationInterceptionArgs args)
         {
-            if(EncryptionKeysStore.Get().ContainsKey(propname))
+            if(GetEncryptionKeys().ContainsKey(propname))
             {
-                string keyName = EncryptionKeysStore.Get()[propname];
+                string keyName = GetEncryptionKeys()[propname];
                 var encrypted = Encrypt(args.Value.ToString(), KeyServer.Get().GetKey(keyName));
-                if (null != EncryptedValuesStore)
-                    if (!EncryptedValuesStore.Get().ContainsKey(propname))
-                        EncryptedValuesStore.Get().Add(propname, encrypted);
+                if (null != GetEncryptedValues())
+                    if (!GetEncryptedValues().ContainsKey(propname))
+                        GetEncryptedValues().Add(propname, encrypted);
                     else
-                        EncryptedValuesStore.Get()[propname] = encrypted;
+                        GetEncryptedValues()[propname] = encrypted;
             }
         }
 
         public override void OnGetValue(LocationInterceptionArgs args)
         {
-            if (EncryptedValuesStore.Get().ContainsKey(propname))
-                args.Value = EncryptedValuesStore.Get()[propname];
+            if (GetEncryptedValues().ContainsKey(propname))
+                args.Value = GetEncryptedValues()[propname];
         }
 
     }

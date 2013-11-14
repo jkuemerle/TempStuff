@@ -27,11 +27,26 @@ namespace EncryptedType
         public IDictionary<string, string> EncryptionKeys { set; get; }
 
         [IntroduceMember(IsVirtual=false,OverrideAction=MemberOverrideAction.OverrideOrFail, Visibility=PostSharp.Reflection.Visibility.Public)]
-        public IKeyServer KeyServer {get;set;}
+        [Newtonsoft.Json.JsonIgnore]
+        public IKeyServer KeyServer { get; set; }
 
         [IntroduceMember(IsVirtual = false, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
+        [CopyCustomAttributes(typeof(Newtonsoft.Json.JsonIgnoreAttribute))]
+        [Newtonsoft.Json.JsonIgnore]
         public Func<string> Integrity { get; set; }
 
+
+        [IntroduceMember(IsVirtual = false, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
+        public IDictionary<string, string> GetEncryptedValues()
+        {
+            return this.EncryptedValues;
+        }
+
+        [IntroduceMember(IsVirtual = false, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
+        public IDictionary<string, string> GetEncryptionKeys()
+        {
+            return this.EncryptionKeys;
+        }
 
         public override void RuntimeInitialize(Type type)
         {
