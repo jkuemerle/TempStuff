@@ -59,6 +59,18 @@ namespace EncryptedType.Tests
             Assert.AreEqual("111-11-1111", ((IEncryptedType)n).AsClear(() => n.SSN));
         }
 
+        [Test]
+        public void TestFluentKey()
+        {
+            var n = new EncTest();
+            var s = new CeloClavis.TestServer();
+            ((IEncryptedType)n).KeyServer(s);
+            ((IEncryptedType)n).Key(() => n.SSN, "Key1");
+            ((IEncryptedType)n).Integrity = n.IntegrityValue;  
+            n.SSN = "111-11-1111";
+            Assert.AreEqual("111-11-1111", ((IEncryptedType)n).AsClear(() => n.SSN));
+
+        }
 
     }
 }
