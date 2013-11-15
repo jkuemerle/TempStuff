@@ -53,6 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenEncryptedType.cs" />
     <Compile Include="RavenEncryptedValue.cs" />
+    <Compile Include="RavenSeekableType.cs" />
+    <Compile Include="RavenSeekableValue.cs" />
     <Compile Include="RequiresPostSharp.cs" />
   </ItemGroup>
   <ItemGroup>

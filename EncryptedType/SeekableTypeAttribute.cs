@@ -21,7 +21,7 @@ namespace EncryptedType
     [IntroduceInterface(typeof(ISeekableType), OverrideAction = InterfaceOverrideAction.Ignore)]
     public class SeekableTypeAttribute : InstanceLevelAspect, ISeekableType
     {
-        private int _iterations = 5000;
+        protected int _iterations = 5000;
 
         [IntroduceMember(IsVirtual = false, OverrideAction = MemberOverrideAction.OverrideOrFail, Visibility = PostSharp.Reflection.Visibility.Public)]
         public IDictionary<string, string> HashedValues { set; get; }

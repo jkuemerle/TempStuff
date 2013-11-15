@@ -22,10 +22,12 @@ namespace CeloCorvus.Tests
         Raven.Client.IDocumentStore docStore;
 
         [RavenEncryptedType]
+        [RavenSeekableType]
         public class EncTest
         {
             public string ID { get; set; }
             [RavenEncryptedValue]
+            [RavenSeekableValue]
             public string SSN { get; set; }
 
             public string IntegrityValue()

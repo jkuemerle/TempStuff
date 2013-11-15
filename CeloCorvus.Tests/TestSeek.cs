@@ -4,9 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NUnit.Framework;
+
+using Raven;
+using Raven.Client.Document;
+
+using CeloCorvus;
+
+using EncryptedType;
+
 namespace CeloCorvus.Tests
 {
-    class TestSeek
+    [TestFixture]
+    public class TestSeek
     {
+
     }
 }

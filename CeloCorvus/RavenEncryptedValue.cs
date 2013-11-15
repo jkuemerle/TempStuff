@@ -16,6 +16,8 @@ namespace CeloCorvus
 {
     [PSerializable]
     [AspectTypeDependency(AspectDependencyAction.Order, AspectDependencyPosition.After, typeof(RavenEncryptedTypeAttribute))]
+    [AspectTypeDependency(AspectDependencyAction.Order, AspectDependencyPosition.After, typeof(RavenSeekableTypeAttribute))]
+    [AspectTypeDependency(AspectDependencyAction.Order, AspectDependencyPosition.After, typeof(RavenSeekableValueAttribute))]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     [CopyCustomAttributes]
     public class RavenEncryptedValueAttribute : EncryptedValueAttribute
