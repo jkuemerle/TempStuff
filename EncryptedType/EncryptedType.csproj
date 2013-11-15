@@ -50,6 +50,7 @@
     <Compile Include="RequiresPostSharp.cs" />
     <Compile Include="SeekableTypeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeekableValueAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

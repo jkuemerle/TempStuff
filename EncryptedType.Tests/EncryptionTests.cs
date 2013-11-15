@@ -13,7 +13,7 @@ using NUnit.Framework;
 namespace EncryptedType.Tests
 {
     [TestFixture]
-    public class TestCelo
+    public class EncryptionTests
     {
 
         [EncryptedType]

@@ -7,8 +7,8 @@
     <ProjectGuid>{880C0B7E-6352-4363-BBFF-4F01C63BA5BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Celo.Tests</RootNamespace>
-    <AssemblyName>Celo.Tests</AssemblyName>
+    <RootNamespace>EncryptedType.Tests</RootNamespace>
+    <AssemblyName>EncryptedType.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DontImportPostSharp>True</DontImportPostSharp>
@@ -48,8 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RequiresPostSharp.cs" />
-    <Compile Include="TestCelo.cs" />
+    <Compile Include="EncryptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeekTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
